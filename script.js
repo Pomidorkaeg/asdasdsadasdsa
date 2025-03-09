@@ -3,21 +3,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuButton = document.querySelector('.menu-button');
   const navButtons = document.querySelector('.nav-buttons');
 
+  // Прокрутка вверх
   window.onscroll = () => {
     scrollToTopBtn.style.display = window.scrollY > 200 ? 'block' : 'none';
   };
 
   scrollToTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
+  // Открытие/закрытие кнопок по клику на кнопку с логотипом
   menuButton.onclick = () => {
     navButtons.classList.toggle('active');
   };
 
-  window.onclick = (e) => {
+  // Закрытие кнопок при клике вне их
+  document.onclick = (e) => {
+    // Закрытие навигации
     if (!e.target.closest('.header') && navButtons.classList.contains('active')) {
       navButtons.classList.remove('active');
     }
-    if (e.target.classList.contains('modal-overlay')) closeModal();
+
+    // Закрытие модального окна при клике вне .modal-content
+    const modalContent = e.target.closest('.modal-content');
+    const modals = document.querySelectorAll('.modal');
+    const overlay = document.querySelector('.modal-overlay');
+    if (!modalContent && modals.length > 0 && overlay.style.display === 'block') {
+      closeModal();
+    }
   };
 
   document.getElementById('whyUsButton').onclick = () => {
