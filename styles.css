@@ -342,10 +342,11 @@ body::before {
   padding: 25px;
   border-radius: 10px;
   color: #ffffff;
-  max-width: 90%;
-  width: 800px; /* Увеличена ширина для десктопа */
+  max-width: 95%; /* Увеличено с 90% */
+  width: 1000px; /* Увеличена базовая ширина с 800px до 1000px */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative; /* Для правильного позиционирования крестика */
 }
 
 .modal-content h2 {
@@ -395,12 +396,13 @@ body::before {
 
 .close {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 1.8rem;
+  top: 20px; /* Увеличен отступ сверху для видимости */
+  right: 20px; /* Увеличен отступ справа для видимости */
+  font-size: 2rem; /* Увеличен размер крестика */
   color: #ffffff;
   cursor: pointer;
   transition: color 0.3s ease;
+  z-index: 1; /* Чтобы крестик был поверх текста */
 }
 
 .close:hover {
@@ -443,6 +445,12 @@ body::before {
 }
 
 /* Адаптивность */
+@media (max-width: 1200px) {
+  .modal-content {
+    width: 90%; /* На экранах меньше 1200px занимает 90% ширины */
+  }
+}
+
 @media (max-width: 1000px) {
   .menu-button {
     display: block;
@@ -482,7 +490,7 @@ body::before {
   }
 
   .modal-content {
-    width: 90%; /* На экранах меньше 1000px занимает почти всю ширину */
+    width: 92%; /* Чуть шире на средних экранах */
   }
 }
 
@@ -531,6 +539,12 @@ body::before {
   .modal-content ol, .modal-content ul {
     font-size: 1rem;
     line-height: 1.6;
+  }
+
+  .close {
+    top: 15px;
+    right: 15px;
+    font-size: 1.8rem;
   }
 }
 
@@ -592,7 +606,7 @@ body::before {
 
   .modal-content {
     padding: 15px;
-    width: 95%; /* Ещё шире на маленьких экранах */
+    width: 96%; /* Максимально широко на маленьких экранах */
   }
 
   .modal-content h2 {
@@ -609,9 +623,9 @@ body::before {
   }
 
   .close {
-    font-size: 1.5rem;
     top: 10px;
     right: 10px;
+    font-size: 1.5rem;
   }
 
   #scrollToTopBtn {
